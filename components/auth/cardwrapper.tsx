@@ -14,15 +14,14 @@ interface CardWrapperProps{
     headerLabel:string;
     backButtonlabel:string;
     backButtonHref:string;
-    showSocial?:boolean;
 }
 
-const CardWrapper = ({children,headerLabel,backButtonHref,backButtonlabel,showSocial}:CardWrapperProps) => {
+const CardWrapper = ({children,headerLabel,backButtonHref,backButtonlabel}:CardWrapperProps) => {
   return (
     <Card className="w-[400px] shadow-md">
         <CardHeader><Header label={headerLabel}/></CardHeader>
        <CardContent>{children}</CardContent>  
-       {showSocial && <CardFooter><Social/></CardFooter>}
+      <CardFooter><Social/></CardFooter>
        <CardFooter><BackButton href={backButtonHref} label={backButtonlabel}/></CardFooter>
     </Card>
   )

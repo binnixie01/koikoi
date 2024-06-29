@@ -16,9 +16,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { FormError } from "@/components/ui/login-error"
 import { FormSuccess } from "@/components/ui/login-success"
-// import { login } from "@/actions/login"
 import { useState, useTransition } from 'react';
-import { signIn } from "@/auth"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 export const RegisterForm = () => {
@@ -33,7 +32,6 @@ export const RegisterForm = () => {
   const [error, setError] = useState("");
   const router = useRouter()
   const onSubmit=async (values:z.infer<typeof RegisterSchema>)=>{
-    console.log(values);
     
     try {
       const res = await fetch("/api/register", {
@@ -41,7 +39,7 @@ export const RegisterForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values
+        body: JSON.stringify({...values,provider:"credential"}
       )
     })
       if (res.status === 400) {
@@ -65,8 +63,7 @@ export const RegisterForm = () => {
     <CardWrapper
     headerLabel="Create an account"
     backButtonlabel="Already have an account?"
-    backButtonHref="/login"
-    showSocial={true} >
+    backButtonHref="/login">
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} 
        className="space-y-8">

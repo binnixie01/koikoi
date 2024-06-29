@@ -14,7 +14,7 @@ const LoginButton = ({
 }: LoginButtonProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push("/login");
+    router.push("/register");
   };
   if (mode === "modal") {
     return <span>MOdal</span>;

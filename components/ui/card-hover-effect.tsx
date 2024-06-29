@@ -2,14 +2,13 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import { Monument } from "../place";
 import Image, { StaticImageData } from "next/image";
 
 export const HoverEffect = ({
   items,
   className,
 }: {
-  items: {
+  items: {id:string,
     title: string;
     description: string;
     link: string;
@@ -55,13 +54,18 @@ export const HoverEffect = ({
           <Card>
           <CardImage src={item.photoUrl} alt={item.title} />
             <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
+              <CardPrice></CardPrice>
           </Card>
         </Link>
       ))}
     </div>
   );
 };
+export const CardPrice=()=>{
+  return(
+    <div className="text-white/80">₹ 50/person</div>
+  )
+}
 
 export const Card = ({
   className,
